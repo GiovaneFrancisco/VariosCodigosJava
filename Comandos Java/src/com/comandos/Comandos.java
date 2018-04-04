@@ -33,7 +33,6 @@ int [var] = Integer(parseInt(txt[var].getText())); // Ler um numero e colocar nu
 float[var] = (); // Atribuir um valor real pra variavel
 String[var] = (); // Atribuir uma frase pra uma variavel
 System.out.print(); // Escrever algo na tela
-System.out.printf(&quot;A nota ? %.1f&quot;, [var]) // Escrever um valor Real formatado [%.f]
 
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
@@ -43,6 +42,7 @@ System.out.print();
 String[var] = [objeto].nextLine(); // Ler a frase do [objeto] e atribuir na [var]
 float[var] = [objetp].nextFloat(); // Ler um valor Real
 int[var] = [objeto].nextInt(); // Ler um valor Inteiro
+char [var] = [objeto].next().charAt(0); // Ler um caractere
 
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
@@ -100,9 +100,9 @@ Scanner teclado= new Scanner(System.in);
 int [var] = teclado.nextInt(); // Aguarda resposta do usuario
 int [var] = 2018 - Nascimento; // Faz uma conta e armazena numa variavel
 System.out.println([var]); // Mostra a variável
-if ([var]&lt;16){ // Se a variável ()
-System.out.println(&quot;&quot;); // Faça
-}else if (([var]&gt;=16 &amp;&amp; [var]&lt;18)||([var]&gt;70)){ // Se nao, se a variável ()
+if ([var]<16){ // Se a variável ()
+System.out.println(""); // Faça
+}else if (([var]<=16 || [var]<18)||([var]>70)){ // Se nao, se a variável ()
 System.out.println(); // Faça
 }else{ // Se não
 System.out.println(); // Faça
@@ -111,10 +111,10 @@ System.out.println(); // Faça
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
 // COMANDO PARA ESTRUTURA DE REPETICAO
-int Contador = 0 // Atribui um contador e coloca valor 0
-while (CC&lt;(numero)){
+int contador = 0 // Atribui um contador e coloca valor 0
+while (cont<(numero)){
 //Faça oq quiser aqui
-Contador++; // Adiciona 1 no CC
+contador++; // Adiciona 1 no CC
 }
 //Comando continue; interrompe o laço e continua a repetição
 // Comando break; interrompe o laço e para a repetição
@@ -122,12 +122,12 @@ Contador++; // Adiciona 1 no CC
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
 // COMANDO ESTRUTURA DE REPECIÇÃO COM TESTE NO FINAL
-int Contador = 0
+int contador = 0
 do{ // Faça algo
 // Faça oq quiser
 
-Contador++;
-}While (Contador&lt;[num]); //Enquanto isso não acontecer
+contador++;
+}While (contador<[num]); //Enquanto isso não acontecer
 
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
@@ -168,12 +168,12 @@ init.Components;
 
 // COMANDO PARA FATORIAL USANDO CONTROLE GIRATORIO
 int Numero = Integer.parseInt(txtNum.getValue().toString()); // Número exibido no
-controle giratOrio
-int Fatorial = 1;
-int Contador = Numero;
-while (Contador&gt;=1){
-Fatorial *= Contador ;
-Contador-- ;
+controle giratório
+int fatorial = 1;
+int contador = Numero;
+while (contador&gt;=1){
+fatorial *= contador;
+contador-- ;
 }
 lblFatorial.setText(Integer.toString(Fatorial)); // Numero exibido como resultado
 
@@ -182,7 +182,7 @@ lblFatorial.setText(Integer.toString(Fatorial)); // Numero exibido como resultad
 // COMANDO PARA CRIAR UM VETOR
 int Vetor[] = new int [()]; // Cria um vetor com () posições
 int Vetor[] = {(), (), ()} // Cria um vetor com os valores [()]
-for(int Contador=0; Contador&lt;=Vetor.length, Contador++){ // Para o contador indo da
+for(int contador=0; contador<Vetor.length, contador++){ // Para o contador indo da
 posiçõo 0 até a última, faça
 System.out.println(Vetor[cont]); // Escreva o valor na posição cont
 }
