@@ -1,6 +1,6 @@
- CONVEÇÕES JAVA
+ /CONVEÇÕES JAVA
 Nome de classes:
-	Não pode usar acentos, espacoc e caracteres especiais (exceto _ )
+	Não pode usar acentos, espacoc e caracteres especiais (exceto _)
 	Não podemos usar palavras reservadas
 	Nome obrigatoriamente com a primeira letra maiúscula
 	Usar Camel Case para mais de um nome
@@ -28,6 +28,11 @@ Nome de pacotes:
 	num1 -+ num2; //Subtrai e atribúi o valor num2 em num1
 	num1 *= num2; //Multiplica e atribúi o valor num2 em num1
 	num1 /= num2; //Divide e atribúi o valor num2 em num1
+	
+	String num = "10.3";
+	Integer.parseInt(num);   //Mudança de String para Int
+	Float.parseFloat(num);   //Mudança de String para Float
+	Double.parseDouble(num); //Mudança de String para Double
 	
 	txtNum1.setText(Integer.toString(num1)); //Coloca no campo de texto o valor Int num1
 	txtNum1.setText(Double.toString(num1)); //Coloca no campo de texto o valor double num1
@@ -192,6 +197,57 @@ Nome de pacotes:
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
 /**
+ * TRATAMENTO DE EXCEÇÕES
+ */
+
+	try {
+		//Instrução sujeita a falha
+	}catch(Exception e){
+		//Instruções para contornar o erro
+		System.out.println(e.getMessage());
+	}catch(SQLException sqle) { //Exceção ao acessar o banco de dados
+		System.out.println(sqle.getMessage());
+	}catch(IOException ioe){ //Exceção de Input/Output
+		System.out.println(ioe.getMessage());
+	}
+
+	e.printStackTrace(); //Detalha em qual linha e em qual lugar ocorreu o erro para o programador
+	
+	
+	void abrirArquivo() throws FileNotFoundException{ //Defique que a exceção será tratada por quem chamou este método
+		FileReader texto;
+		texto = new FileReader("C:\\arquivos\\cartax.txt");
+	}
+	
+	try {
+		abrirArquivo();
+	}catch(FileNotFoundException e) {
+		JOptionPane.showMessageDialog(null, "O arquivo não foi encontrado"); //Caso o método nao consiga seguir as instruções, vai abrir uma mensagem de erro
+	}finally { //Uma instrução que SEMPRE será executado, independente de sucesso ou falha do try/catch
+		//Algo que será executado
+	}
+	
+	throw new Exception([]); //Cria uma exceção com mensagem []
+	
+	throws SaldoInsuficienteException //Cria um Exception personalizado
+	throw new SaldoInsuficienteException("") //Cria uma mensagem para ser exibida quando ocorrer o erro
+	
+	public class SaldoInsuficienteException extends Exception{
+		public SaldoInsuficienteException() {
+			super();
+		}
+		public SaldoInsuficienteException(String message) {
+			super(message);
+		}
+	} //Criação da classe para executar uma exceção personalizada
+	
+	
+	InputMismatchException //Exceção para erro de valores numéricos
+	
+	
+=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+/**
  * CRIAR UM PROCEDIMENTO
  */
 	public static void [soma](int a,int b){ // Cria um procedimento de nome []
@@ -217,35 +273,25 @@ init.Components;
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
 /**
- * COMANDO PARA PEGAR UM NUMERO DE UM CONTROLE DESLIZANTE
+ * MANIPULAÇÃO DE DATA
  */
-/* Clica com direito no slider, Eventos, Change,...
-* Vai criar uma classe praquele slider, l coloca
-*/
-
-[var].setText(Integer.toString([var].getValue()));
-
-=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
-
-/**
- * COMANDO PARA FATORIAL USANDO CONTROLE GIRATORIO
- */
-int Numero = Integer.parseInt(txtNum.getValue().toString()); // Número exibido no
-controle giratório
-int fatorial = 1;
-int contador = Numero;
-while (contador&gt;=1){
-fatorial *= contador;
-contador-- ;
-}
-lblFatorial.setText(Integer.toString(Fatorial)); // Numero exibido como resultado
-
+	LocalDateTime agora = LocalDateTime.now(); //Pega a hora atual do sistema
+	DateTimeFormatter mascara = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"); //Cria uma máscara para Dia/Mês/Ano Hora:Minuto:Segundo
+	System.out.print(mascara.format(agora)); //Faz com que a hora fique dentro da máscara
+	
+	LocalDateTime.of(ano,mes,dia,hora,min,seg,nano); //Cria uma hora baseado nas informações
+	LocalDateTime.parse(string,mascara); //Pega a String da data e coloca dentro da máscara
+	
+	
+	
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
 /**
  * COMANDO PARA CRIAR UMA JANELA DE TEXTO JOPTIONPANE
  */
 	import java.util.ArrayList;
+import java.util.InputMismatchException;
+
 import javax.swing.JOptionPane;
 
 	JOptionPane.showMessageDialog(null, ()); // Cria janela MOSTRANDO um texto
@@ -288,6 +334,24 @@ System.out.println(valor);
 /**
  * COMANDO PARA IMPORTAR UM FORMATADOR
  */
-DecimalFormat format = new DecimalFormat("#0.00"); 
-System.out.println(format.format(());
+DecimalFormat mascara = new DecimalFormat("#0.00"); 
+System.out.println(mascara.format(());
+
+=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+/**
+ * CRIAÇÃO DE UM JFrame
+ */
+
+	JFrame tela = new JFrame();
+	setTitle("")
+	setDefaultCloseOperation(valor); //VALOR = 0 -> Não faça nada
+									 //VALOR = 1 -> Minimiza
+									 //VALOR = 2 -> Dispose
+									 //VALOR = 3 -> Fecha
+	setSize(new Dimention(comprimento,altura));
+	setLocationRelativeTo(null);
+	.getContentPane().setBackground(Color.COR);
+	
+	
 
