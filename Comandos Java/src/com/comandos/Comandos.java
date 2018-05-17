@@ -1,4 +1,6 @@
- /CONVEÇÕES JAVA
+import java.util.Map;
+
+/CONVEÇÕES JAVA
 Nome de classes:
 	Não pode usar acentos, espacoc e caracteres especiais (exceto _)
 	Não podemos usar palavras reservadas
@@ -8,6 +10,7 @@ Nome de pacotes:
 	Domínio ao contrário (ex: br.com.gff.java)
 
 //INSTALAR DICIONARIO PT/BR
+	
 	Obter o dicionario
 	Window -> Preferences -> General -> Editors -> Text editors -> Spelling
 	Importar o dicionario -> Apply -> Ok
@@ -242,7 +245,7 @@ Nome de pacotes:
 	} //Criação da classe para executar uma exceção personalizada
 	
 	
-	InputMismatchException //Exceção para erro de valores numéricos
+	e.InputMismatchException //Exceção para erro de valores numéricos
 	
 	
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
@@ -253,23 +256,161 @@ Nome de pacotes:
 	public static void [soma](int a,int b){ // Cria um procedimento de nome []
 		int [s] = a + b; // Diz oque o procedimento vai fazer
 	}
+	
+	{
 	soma(5,2); // Chama o procedimento passando parâmetros
 	int a = 5;
 	int b = 2;
 	soma(a,b); // Chama o procedimento passando parâmetros de variáveis
+	
+	}
+=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+/**
+ * GENERICS BAG
+ */
+	public class Bolsa<T>{ //Criação de uma bolsa com um tipo T indefinido
+	 	private T valor; //Criação de uma variávei genérica, aceita qualquer variável
+	 
+		public T getValor() { 
+			return valor
+		}
+		
+		public T setValor() {
+			this.valor = valor;
+		}
+	}
+
+    //=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+	public class Trio<T>{ //Criação de um generic que comporta 3 informações de tipos diferentes
+		private T primeiro; //Variáveis genéricas
+		private T segundo;
+		private T terceiro;
+		
+		public T getPrimeiro() { //Método Get & Set para definir as variáveis
+			return primeiro;
+		}
+		public T setPrimeiro(T valor) {
+			this.peimeiro = primeiro
+		}
+		...
+	}
+	
+	Trio<Integer> trio1 = new Trio<Integer>(); //Um trio definido para Integer
+	trio1.setPrimeiro(39);
+	trio1.setSegundo(500);
+	trio1.setTerceiro(10);
+	
+	trio<String> trio2 = new Trio<String>(); //Um trio definido para String
+	trio.setPrimeiro("OIAJDAIOSD");
+	...
+	
+	//=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+	
+	public class Trio<T,U,V>{ //Criação de um tio com 3 tipos indefinidos, porem diferentes entre sí
+		private T primeiro;
+		private U segundo;
+		private V terceiro;
+		
+		public T getPrimeiro() {
+			return primeiro;
+		}
+		public void setPrimeiro(T valor) {
+			this.primeiro = valor;
+		}
+		...
+	}
+
+	Trio<Integer, String, Produto> trio1 = new Trio<Integer, String, Produto>(); //Implementação de um trio com 3 valores diferentes
+	trio1.setPrimeiro(30);
+	trio1.setSegundo("IUASDHKSD");
+	...
+	
+	//=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+	
+	//Criação de um método para return do último ítem de um array com tipo indefinido
+	
+	public static <T> T ultimoItem(T[] array) {
+		if(array == null || array.length.equals(0)) { //Se o array estiver vazio
+			return null; //Retorne null
+		}else { //Se tiver algum item
+			return array[array.length-1]; //Retorte no ultimo item desse array
+		}
+	
+=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+/**
+ * UTILIZAÇÃO DE LISTAS/SET
+ */
+	
+	Set<Fincionario> conjunto = new HasSet<Funcionario>(); //Cria um conjunto de objetos usando uma ordem 
+	conjunto.add(new Funcionario(201, "Maria")); //Adiciona um item ao conjunto
+	
+	SortedSet //Faz a organização seguindo um critério específico baseado no maior/menos
+	SortedSet<Cliente> set = new TreeSet<Cliente>();
+	set.add(new Cliente((), (), () ));
+	...
+	
+	for(Cliente c : set) {
+		System.out.println(c.getNome()); //Exibe o nome de todos os clientes em ordem alfabética
+	}
+	
+	
+		- implements Comparable<Cliente>
+	
+		public int compareTo(Cliente other) { //Quando um cliente A chamar o método passando o cliente B, vai ser comparado os nomes de ambos
+		return this.nome.compareTo(other.nome);
+	}
+
+	compareTo String -> Valor positivo, String A > B; Valor negativo, String B > A; Valor 0, String A = B
+	compareTo int -> Órdem numérica
+	
+	first(); //Retorna o menor elemento
+	last(); //Retorna o maior elemento
+	headSet(T); //Retorna os itens até esse item
+	tailSet(T); //Retorna os itens apartir desse item
+	subSet(T,T); //Retorna os itens entre os especificados
+	}
+	
+=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+/**
+ * MAP
+ */
+	put(k,v) //Adiciona um elemento com chave K e conteúdo V
+	get(k) //Obtem o ítem do elemento de chave K
+	remove(K) //Remove a linha do objeto
+	clear() //Apaga todos os elementos
+	size() //Retorna o tamanho do map
+	keySet() //Retorna um conjunto contendo  as chaves do mapa
+	
+	Map<String, Object> mapa = new HashMap<String, Object>() //Cria um mapa
+	mapa.put("nome", "Manuel"); //Adiciona itens ao mapa
+	mapa.put("idade", 27);
+	mapa.put("salario", 1234.3);
+	mapa.put("nascimento", new GregorianCalendar(1985, 0, 15));
+	
+	
+	String nome = (String) mapa.get("nome"); //Recupera itens do mapa
+	Integer idade = (Integer) mapa.get("idade");
+	Double salario = (Double) mapa.get("salario")
+			
+			Set<String> chaves = mapa.keySet();
+
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
 
 /**
  * COMANDO PARA ALTERAR A VISIBILIDADE DE ALGUM OBJETO
  */
-[objeto].setVisible(true/false);
-// Para começar um programa com algo invisivel, coloca isso no PUBLIC do codigo fonte
-public.(){
-init.Components;
-[objeto].setVisible();
-}
-
+	[objeto].setVisible(true/false);
+	// Para começar um programa com algo invisivel, coloca isso no PUBLIC do codigo fonte
+	public.(){
+		init.Components;
+		[objeto].setVisible();
+	}
+	
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
 /**
@@ -289,10 +430,6 @@ init.Components;
 /**
  * COMANDO PARA CRIAR UMA JANELA DE TEXTO JOPTIONPANE
  */
-	import java.util.ArrayList;
-import java.util.InputMismatchException;
-
-import javax.swing.JOptionPane;
 
 	JOptionPane.showMessageDialog(null, ()); // Cria janela MOSTRANDO um texto
 
@@ -325,17 +462,17 @@ import javax.swing.JOptionPane;
 /**
  * COMANDO PARA GERAR UM NUMERO ALEATORIO
  */
-double [var] = 1 + (Math.random()*(11-1)); // Gera um numero de 1 a 10
-int valor = (int)[var]; // Transforma o valor real em inteiro
-System.out.println(valor);
+	double [var] = 1 + (Math.random()*(11-1)); // Gera um numero de 1 a 10
+	int valor = (int)[var]; // Transforma o valor real em inteiro
+	System.out.println(valor);
 
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
 /**
  * COMANDO PARA IMPORTAR UM FORMATADOR
  */
-DecimalFormat mascara = new DecimalFormat("#0.00"); 
-System.out.println(mascara.format(());
+	DecimalFormat mascara = new DecimalFormat("#0.00"); 
+	System.out.println(mascara.format(());
 
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
@@ -353,5 +490,5 @@ System.out.println(mascara.format(());
 	setLocationRelativeTo(null);
 	.getContentPane().setBackground(Color.COR);
 	
-	
+	}
 
