@@ -1,3 +1,5 @@
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Map;
 
 /CONVEÇÕES JAVA
@@ -400,16 +402,32 @@ Nome de pacotes:
 
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
-
 /**
- * COMANDO PARA ALTERAR A VISIBILIDADE DE ALGUM OBJETO
+ * FILE/PATH
  */
-	[objeto].setVisible(true/false);
-	// Para começar um programa com algo invisivel, coloca isso no PUBLIC do codigo fonte
-	public.(){
-		init.Components;
-		[objeto].setVisible();
-	}
+	
+	Path path1 = Paths.get("C:\\Meus Documentos\\docs");
+	Path path2 = Paths.get("..\\Arquivo_Nivel_acima.mp3");
+	
+	toAbsolutePath(); //Retorna uma String com o caminho completo para o path
+	getFileName(); //Retorna uma String contendo o nome e o diretório do path
+	getParent(); //Retorna o Path referente ao diretório
+	resolve(String); //Cria um novo Path para um arquivo ou subdiretório contido no diretório por esse Path
+	
+	Files.exists(path); //Verifica se o path existe, retorna boolean
+	Files.isDirectory(path); //Verifica se o path existe e é um diretório
+	Files.isRegularFile(path); //Verifica se o path existe e é um arquivo
+	Files.size(path); //Retorna um long contendo o tamanho em bytes do arquivo
+	Files.createDirectory(path); //Cria um diretório referente ao path
+	Files.createDirectories(path); //Cria recursivamente os diretórios referentes ao path
+	
+	Files.move(path1, path2); //Move o arquivo ou diretório 
+	Files.copy(path1, path2); //Copia o arquivo ou diretório
+	Files.delete(path); //Apaga o arquivo ou diretório
+	Files.createFile(path); //Cria um arquivo de tamanho 0 no path
+	Files.list(path); //Retorna um Stream<Path> apontando para os arquivos e subdiretórios no path
+	
+	
 	
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
