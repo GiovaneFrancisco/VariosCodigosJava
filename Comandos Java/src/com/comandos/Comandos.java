@@ -1,7 +1,3 @@
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Map;
-
 /CONVEÇÕES JAVA
 Nome de classes:
 	Não pode usar acentos, espacoc e caracteres especiais (exceto _)
@@ -427,8 +423,165 @@ Nome de pacotes:
 	Files.createFile(path); //Cria um arquivo de tamanho 0 no path
 	Files.list(path); //Retorna um Stream<Path> apontando para os arquivos e subdiretórios no path
 	
+=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+			
+/**
+ * LEITURA DE TEXTO
+ */
 	
+	Exceptions
+		FileNotFoundException -> Quando tenta ler/gravar um arquivo e ele não existe
+		EOFException -> Quando tenta ler/capturar informações além do limite do arquivo
 	
+	Reader
+		Classe usada para ler uma String de caracteres
+				
+		Reader reader1 = new FileReader("C:\\carta.txt"); //Tenta ler o arquivo												|				
+		reader1.close(); //Fecha o arquivo de texto para ele não ser alterado												|
+																															|
+		char[] dados = new char[4]; //Cria um array para armazenar os caracteres											|
+		dados[0] = (char)reader1.read(); //Lê o caractere, salva no array e pula para o próximo mas não lê					|
+		dados[1] = (char)reader1.read();																					|} Lê UM caractere por vez	
+		...																													|						
+		reader1.close();																									|						
+		String texto = new String(dados); //Transforma os números(char) lidos em caracteres									|								
+		System.out.println(text); //Exibe o texto																			|					
+		
+		
+		char[] dados = new char[4]; //Cria um array para armazenar os caracteres											|
+		int quant = reader.read(dados); //Tenta ler todos os caracteres, retorna um int com o valor de caracteres lidos		|
+		reader.close();																										|} Lê VÁRIOS caracteres por vez
+		String texto = new String(dados);																					|	
+		System.out.print(texto);																							|
+		
+		
+	BufferedReader 
+		BufferedReader reader = new BufferedReader(new FileReader("C:\\carta.txt"));
+		if(reader.ready()) { //Se houver alguma linha para ser lida
+			System.out.println(reader.readLine()); //Leia a linha e exiba
+		}
+		
+		while(reader.ready()) { //Enquanto houver uma linha para der lida
+			System.out.print(reader.readLine()); //Leia a linha e exiba
+		}
+		reader.close();
+		
+/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+/**
+ * GRAVAÇÃO DE TEXTO		
+ */
+	
+	Writer escritor = new FileWriter("C:\\carta.txt", true); //O uso do TRUE define que as informações serão adicionadas ao final da frase/texto e não que irão substituir um existente
+	escritor.write("Java é divertido"); //Escreve a String do documento selecionado
+	escritor.close()
+	
+	BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\carta.txt"));
+	writer.write("linha 1");
+	writer.newLine(); //Pula uma linha
+	writer.write("Linha 2");
+	writer.close();
+		
+	PrintWriter writer = new PrintWriter("C:\\carta.txt");
+	writer.print();
+	writer.println();
+	writer.printf();
+	
+=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+/**
+ * ASSERÇÕES
+ */
+	Instrução neutra para quando o programa está pronto, mas é útil enquanto se está programando
+	
+	assert <expressão>; //Valida uma expressão
+	assert <expressão> : [mensagem]; //Valida uma expressão e exibe uma mensagem 
+	
+	java -ea [Classe]
+			
+	java -disableassertions
+
+	java -ea:br.com.utils...
+		 -ea:br.com.escola...
+		 -da:br.com.qualquercoisa...
+		 
+=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+/**
+ * THREADS
+ */
+	Comandos que são executados linearmente 
+	Programa MultiThread/Concorrente
+		Programa com várias linhas do tempo onde elas são executadas simultaneamente
+		
+		//Classe secundária
+		public class MinhaThread extends Thread{
+			public void run() {
+				//Códigos secundários para serem executados
+			}
+		}
+		
+		//Classe main
+		public class Principal{
+			main{
+				Thread t = new Minha Thread();
+				t.start();
+				//Demais códigos para serem executados
+			}
+		}
+	
+		Thread.sleep([tempo]) //Faz com que tenha um delay de [tempo] mili segundos
+		
+		Thread t1 = new MinhaThread();
+		...
+		Thread t5 = new MinhaThread();
+		
+		t1.setPriority(2);
+		t2.setPriority(8);
+		t3.setPriority(Thread.MAX_PRIORITY); //Prioridade 10
+		t4.setPriority(Thread.MIN_PRIORITY); //Prioridade 1
+		t5.setPriority(Thread.NORM_PRIORITY) //Prioridade 5 - Padrão
+
+		t1.setName("Thread auxiliar"); //Seta um nome para a thread
+		
+		Thread t = Thread.currentThread(); //Cria uma variável para poder pegar informações da Thread atual
+		t.getName(); //Mostra o nome da Thread
+		t.getPriority(); //Mostra a prioridade da Thread
+		
+		
+		Thread new
+			Uma Thread instanciada mas que NÃO foi iniciada
+		Thread runnable
+			Uma Thread que foi iniciada e está pronta para ser iniciada
+		Threadh terminated
+			Uma Thread que terminou todas as suas funções, não pode sofrer um novo start()
+		Thread sleepy
+			Uma Thread é pausada pelo tempo determinado pelo método .sleep(), é reativada ao terminar esse tempo
+		Thread waiting
+			Uma Thread que está esperando por uma informação que será dada por outra Thread
+			.join()
+		Thread bloked
+		 	Uma Thread que está esperando o lock de uma outra Thread
+		 	
+		 	public synchronized boolean add() {		|	
+			}										|} Métodos que usam synchronized para impedir uso simultâneo por Threads 	
+			public synchronized Object remove() {	|
+			}
+=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+/**
+ * JDBC
+ */
+	
+	Transações
+	try {
+		bd.setAutoCommit(false); //Faz com que todos os comandos de execução do banco de dados sejam efetuados antes de seres inseridos
+		bd.executeUpdate(...) //Comando de Atualização/Deletar/Copiar
+		...
+		bd.commit();
+	}cath{
+		bd.rollback(); //Se alguma das instruções dentro do TRY der errado, tudo vai ser desfeito e nada vai dar UPDATE
+	}
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
 /**
@@ -441,7 +594,10 @@ Nome de pacotes:
 	LocalDateTime.of(ano,mes,dia,hora,min,seg,nano); //Cria uma hora baseado nas informações
 	LocalDateTime.parse(string,mascara); //Pega a String da data e coloca dentro da máscara
 	
+	LocalDateTime data;
+	data.with(TemporalAdjusters.); //Altera algumas coisas da data, vários métodos úteis
 	
+	data.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()); //Mostra todo o nome do mês na língua default do computador
 	
 =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
 
@@ -510,3 +666,41 @@ Nome de pacotes:
 	
 	}
 
+	=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+
+/**
+ * CRIAÇÃO DE UMA TABELA
+ */
+	Adiciona um JCrollPane
+	Adiciona JTable no "ViewPort"
+	Abre propriedade Model do JTable, Insert para cada Linha e Coluna
+	
+	usa setString para definir um parametro de consulta no banco de dados
+	usa getString/int/Double/LocalDateTime para recuperar as informações do banco
+	
+	List<"objeto"> lista = new ArrayList<>();
+	lista.add("objeto");
+	
+	private Object[][] preencherTabela(List<"objeto"> lista){
+		Object[][] conteudo = new Object[lista.size()][nº colunas];
+		
+		for(int i=0; i<lista.size(); i++) {
+			conteudo[i][0] = //Set dos atributos para serem exibidos
+		}
+	}
+	
+	=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=
+			
+/**
+ * Como criar um JAVADOC
+ */
+	
+	Seleciona o projeto FINALIZADO
+	Project -> Generate JavaDOC
+	Se nao tiver achado a pasta, abra o diretório do JAVA -> Pasta bin -> seleciona Java.exe
+	Ele vai salvar uma pasta dentro do workspace com .doc
+	
+	
+	
+	
+	
